@@ -24,11 +24,16 @@ module.exports = {
     }
   },
   configureWebpack: {
+    // webpack的配置
     resolve: {
       alias: {
-        'vue$': 'vue/dist/vue.esm.js'
-      }
-    }
-  }
+        // 路径别名属性
+        'vue$': 'vue/dist/vue.esm.js',
+        '@': require('path').resolve(__dirname,'./src'),
+        '@cmp': require('path').resolve(__dirname,'./src/components'),
+        '@assets': require('path').resolve(__dirname,'./src/assets')
+      },
+    },
+  },
 }
 
