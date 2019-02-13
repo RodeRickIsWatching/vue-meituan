@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="cmp-right-nav">
     <ul class="header-nav-first">
       <li v-for="(item,index) in msg" :class="{'has-child': item.length>1}">
         <router-link to>{{item[0]}}</router-link>
@@ -59,10 +59,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
+.cmp-right-nav {
   float: right;
   a {
     color: rgb(153, 153, 153);
+    &:hover {
+      color: rgb(49, 187, 172);
+    }
   }
 }
 

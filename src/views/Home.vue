@@ -1,62 +1,64 @@
 <template>
   <div class="container">
     <div class="cmp-header">
-      <div class="bg">
-        <cmp-navbar class="nav-container" />
-      </div>
-      <cmp-searchbox class="search-box-container" />
+      <cmp-header class="cmp-header-container"/>
+    </div>
+    <div class="cmp-content clearfix">
+      <cmp-content class="cmp-content-container"/>
+    </div>
+    <div class="cmp-footer">
+      <cmp-footer class="cmp-footer-container"/>
     </div>
   </div>
 </template>
 
 <script>
-  import navbar from "@/components/home/header/navbar/index.vue";
-  import searchBox from "@/components/home/header/searchBox/index.vue";
+import header from "@/components/home/header/index.vue";
+import footer from "@/components/home/footer/index.vue";
+import content from "@/components/home/content/index.vue";
 
-  export default {
-    components: {
-      "cmp-navbar": navbar,
-      "cmp-searchbox": searchBox
-    }
-  };
+export default {
+  components: {
+    "cmp-footer": footer,
+    "cmp-header": header,
+    "cmp-content": content
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-  .container {
-    background: rgb(248, 248, 248);
-  }
+.clearfix::before,
+.clearfix::after {
+  content: " ";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
 
-  .cmp-header {
-    width: 100%;
-    background: #fff;
-    box-shadow: 0 2px 27px 0 rgba(0, 0, 0, .1);
-  }
-
-  .bg {
-    width: 100%;
-    background: #f8f8f8;
-  }
-
-  .nav-container {
+.cmp-header {
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 2px 27px 0 rgba(0, 0, 0, 0.1);
+}
+.cmp-content {
+  .cmp-content-container {
     margin: 0 auto;
-    width: 1205px;
-    height: 40px;
-    box-sizing: border-box;
+    width: 1190px;
+    position: relative;
+  }
+}
+.cmp-footer {
+  display: block;
+  margin-top: 40px;
+  .cmp-footer-container {
+    width: 1190px;
+    margin: 0 auto;
+    color: rgb(51, 51, 51);
     font-size: 12px;
-    color: rgb(153, 153, 153);
+    line-height: 2;
+    box-sizing: border-box;
+    text-align: left;
   }
-
-  .search-box-container {
-    width: 1205px;
-    padding-bottom: 35px;
-    margin: 0 auto;
-
-    &::after {
-      content: " ";
-      visibility: hidden;
-      display: block;
-      height: 0;
-      clear: both;
-    }
-  }
+}
 </style>

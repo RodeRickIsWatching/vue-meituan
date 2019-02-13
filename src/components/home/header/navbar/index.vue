@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="navbar-container">
     <el-row type="flex" justify="space-between">
       <el-col :span="7" class="left-nav">
         <cmp-left/>
@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container{
+.navbar-container{
   height: 40px;
 }
 .left-nav{

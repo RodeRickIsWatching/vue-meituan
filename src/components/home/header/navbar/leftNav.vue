@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="cmp-left-nav">
     <div class="current-city">
       <i class="el-icon-location"/>
       <span>上海</span>
@@ -8,13 +8,13 @@
       <router-link to class="change-city">切换城市</router-link>
     </div>
     <div class="near-citys">
-      [<router-link to class="city-guess">彰化</router-link>
+      <template>[</template>
+      <router-link to class="city-guess">彰化</router-link>
       <router-link to class="city-guess">宜兰</router-link>
-      <router-link to class="city-guess">太仓</router-link>]
+      <router-link to class="city-guess">太仓</router-link>
+      <template>]</template>
     </div>
     <div class="user-entry">
-      <!-- <router-link class="login-status" to="/login">立即登录</router-link>
-      <router-link class="register" to="/register">注册</router-link>-->
       <cmp-status/>
     </div>
   </div>
@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
+.cmp-left-nav {
   float: left;
 }
 div {
@@ -50,5 +50,8 @@ div {
 }
 .user-entry {
   margin-left: 15px;
+}
+a:hover {
+  color: rgb(49, 187, 172);
 }
 </style>

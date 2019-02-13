@@ -2,7 +2,16 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { Button, Select, Row, Col, Icon, Input } from 'element-ui';
+import {
+  Button,
+  Select,
+  Row,
+  Col,
+  Icon,
+  Input,
+  Carousel,
+  CarouselItem
+} from 'element-ui';
 
 Vue.config.productionTip = false
 
@@ -13,6 +22,8 @@ Vue.use(Row)
 Vue.use(Col)
 Vue.use(Icon)
 Vue.use(Input)
+Vue.use(Carousel)
+Vue.use(CarouselItem)
 
 
 
@@ -26,4 +37,3 @@ new Vue({
   //   App
   // }
 }).$mount('#app')
-
