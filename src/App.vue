@@ -9,6 +9,7 @@ export default {};
 </script>
 
 <style src="@/assets/css/init.css" />
+<style src="@/assets/css/element-ui.css"/>
 
 <style>
 :root,

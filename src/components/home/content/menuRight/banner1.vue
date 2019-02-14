@@ -50,6 +50,9 @@
 
 <script>
 export default {
+  props:{
+
+  },
   data() {
     return {
       banner1Link: [require("@assets/menuRight/banner1Link.jpg")],
