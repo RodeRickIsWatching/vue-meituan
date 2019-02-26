@@ -1,64 +1,36 @@
 <template>
-  <div class="menu-left-container">
-    <div class="menu-title">
-      <span>全部分类</span>
-    </div>
-    <div class="menu-item" ref="menuItem">
-      <ul>
-        <li
-          v-for="(item, index) in menuList"
-          class="menu-item-title"
-          @mouseover="onMouseOver(index)"
-        >
-          <i class="el-icon-star-on"></i>
-          <span>
-            <router-link to>{{item.name}}</router-link>
-          </span>
-          <i class="more-icon"></i>
+  <div>
+    <ul ref="menuContainer">
+      <li class="title" @mouseover="onmouseover">
+        全部分类
+        <i class="el-icon-arrow-down" :class="{hovered:ifHovered}"></i>
+      </li>
+      <div class="menu-box" v-show="ifHovered">
+        <li v-for="item in menuList" class="item">
+          <a href>{{item.name}}</a>
         </li>
-      </ul>
-    </div>
-    <template v-for="(item, index) in menuList">
-      <div class="menu-item-2" v-show="index==nowIndex" ref="menuItem2">
-        <div class="menu-detail" v-if="item.items" v-for="(item2) in item.items">
-          <div class="detail-title">
-            <router-link to>{{item2.title}}</router-link>
-            <router-link to>
-              更多
-              <i class="more-icon"></i>
-            </router-link>
-          </div>
-          <div class="detail-item">
-            <router-link to v-if="item2.items" v-for="(item3) in item2.items">{{item3}}</router-link>
-          </div>
-        </div>
       </div>
-    </template>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
   methods: {
-    onMouseOver(index) {
-      this.nowIndex = index;
-      let touchArea = this.$refs.menuItem;
-      let touchArea2 = this.$refs.menuItem2;
+    onmouseover(e) {
+      this.ifHovered = true;
+      let target = this.$refs.menuContainer;
       document.onmousemove = e => {
-        let target = e.target;
         let pathArr = e.path;
-        if (
-          !pathArr.includes(touchArea2[index]) &&
-          !pathArr.includes(touchArea)
-        ) {
-          this.nowIndex = undefined;
+        if (!pathArr.includes(target)) {
+          this.ifHovered = false;
         }
       };
     }
   },
   data() {
     return {
-      nowIndex: undefined,
+      ifHovered: false,
       menuList: [
         {
           type: "food",
@@ -286,145 +258,62 @@ export default {
         }
       ]
     };
-  },
-  created(){}
+  }
 };
 </script>
-
-
-<style lang="scss" scoped>
-.more-icon {
-  width: 4px;
-  height: 4px;
-  border-bottom: 1px solid rgb(255, 255, 255);
-  border-right: 1px solid rgb(255, 255, 255);
-  transform: rotate(-45deg);
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: auto;
+<style lang='scss' scoped>
+i {
+  transition: all 0.2s linear;
 }
-.menu-left-container {
-  width: 230px;
-  height: 475px;
+
+.hovered {
+  transform: rotateZ(-180deg);
+}
+
+ul {
+  background: rgb(255, 255, 255);
   position: relative;
-  text-align: left;
-  box-sizing: border-box;
-  float: left;
-  margin-top: -50px;
-  color: rgb(255, 255, 255);
-  //   background: rgba(2, 181, 157, 0.85);
-  background: linear-gradient(
-    -180deg,
-    rgba(2, 181, 157, 0.85) 2%,
-    rgba(22, 146, 183, 0.85) 100%
-  );
-  .menu-title {
-    height: 50px;
-    padding-top: 15px;
-    box-sizing: border-box;
-    span {
-      font-size: 16px;
-      font-weight: 400;
-      margin-left: 15px;
-    }
+  bottom: 15px;
+  display: inline-block;
+  color: rgb(153, 153, 153);
+  font-size: 12px;
+  margin-left: 14px;
+  border: 1px solid rgb(229, 229, 229);
+  border-radius: 4px;
+  .title {
+    padding: 5px 4px 5px 4px;
+    cursor: pointer;
   }
-  .menu-item {
-    ul {
-      padding: 10px 0 8px;
-      height: 425px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      .menu-item-title {
-        position: relative;
-        box-sizing: border-box;
-        padding: 2px 12px;
-        // height: 26px;
-        &:hover {
-          background-color: rgba(255, 255, 255, 0.2);
-          i:nth-of-type(1) {
-            color: rgba(255, 255, 255, 0.8);
-          }
-        }
-        i:nth-of-type(1) {
-          color: rgba(255, 255, 255, 0.2);
-        }
-        .more-icon {
-          color: rbg(255, 255, 255);
-          right: 13px;
-        }
-        span {
-          display: inline-block;
-          margin-left: 11px;
-          a {
-            font-size: 13px;
-            line-height: 20px;
-            height: 20px;
-            color: rgb(255, 255, 255);
-            cursor: pointer;
-          }
-        }
-      }
-    }
-  }
-}
-
-.menu-item-2 {
-  // display:none;
-  position: absolute;
-  top: 60px;
-  left: 230px;
-  width: 400px;
-  height: 416px;
-  background-color: rgb(255, 255, 255);
-  z-index: 199;
-  color: rgb(102, 102, 102);
-  overflow: hidden;
-  .menu-detail {
-    padding: 0 30px;
-    .detail-title {
-      margin-top: 24px;
-      height: 22px;
-      line-height: 22px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgb(229, 229, 229);
-      a:nth-of-type(1) {
-        font-size: 16px;
-        font-weight: 500;
-        color: rgb(34, 34, 34);
-        cursor: pointer;
-        float: left;
-      }
-      a:nth-of-type(2) {
-        font-size: 12px;
-        color: rgb(153, 153, 153);
-        font-weight: 400;
-        float: right;
-        margin-right: 6px;
-        position: relative;
-        cursor: pointer;
-        .more-icon {
-          right: -6px;
-          border-color: rgb(153, 153, 153);
-        }
-      }
-    }
-    .detail-item {
+  .menu-box {
+    position: absolute;
+    z-index: 1000;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(229, 229, 229);
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1);
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    left: -1px;
+    padding: 15px 40px 12px 10px;
+    li {
+      line-height: 2.4;
+      white-space: nowrap;
       a {
-        color: rgb(153, 153, 153);
-        font-size: 12px;
-        line-height: 15px;
-        display: inline-block;
-        margin-right: 16px;
-        margin-top: 10px;
-        cursor: pointer;
+        color: rgb(102, 102, 102);
+        padding: 0 6px;
+        position: relative;
         &:hover {
           color: rgb(49, 187, 172);
         }
       }
+    }
+    &::after {
+      content: "";
+      background: rgb(255, 255, 255);
+      width: 72px;
+      height: 3px;
+      position: absolute;
+      top: -2px;
+      left: 0;
     }
   }
 }

@@ -2,16 +2,17 @@
   <div class="cmp-left-nav">
     <div class="current-city">
       <i class="el-icon-location"/>
-      <span>上海</span>
+      <span>{{nowCity}}</span>
     </div>
     <div>
-      <router-link to class="change-city">切换城市</router-link>
+      <router-link to="/changeCity" class="change-city">切换城市</router-link>
     </div>
     <div class="near-citys">
       <template>[</template>
-      <router-link to class="city-guess">彰化</router-link>
-      <router-link to class="city-guess">宜兰</router-link>
-      <router-link to class="city-guess">太仓</router-link>
+      <template v-if="nearCity[nowCity]">
+        <router-link to class="city-guess" v-for="item in nearCity[nowCity]">{{item}}</router-link>
+      </template>
+      <router-link to class="city-guess" v-else v-for="item in others">{{item}}</router-link>
       <template>]</template>
     </div>
     <div class="user-entry">
@@ -22,7 +23,22 @@
 
 <script>
 import userStatus from "./userStatus.vue";
+import { mapState } from "vuex";
 export default {
+  computed: {
+    ...mapState("home", ["nowCity"])
+  },
+  data() {
+    return {
+      nearCity: {
+        上海: ["彰化", "宜兰", "太仓"],
+        北京: ["大厂回族自治县", "廊坊", "固安县"],
+        广州: ["佛山", "顺德", "南沙"],
+        深圳: ["东方", "基隆", "嘉义市"]
+      },
+      others: ["城市A", "城市B", "城市C"]
+    };
+  },
   components: {
     "cmp-status": userStatus
   }

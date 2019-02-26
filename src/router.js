@@ -8,11 +8,15 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [
-    {
+  routes: [{
       path: '/',
       name: 'home',
       component: home
+    },
+    {
+      path: '/changeCity',
+      name: 'changeCity',
+      component: () => import('./views/changeCity.vue')
     },
     {
       path: '/login',
@@ -23,6 +27,11 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: () => import('./views/register.vue')
+    },
+    {
+      path: '/p',
+      name: 'product',
+      component: () => import('./views/product.vue')
     }
   ]
 })

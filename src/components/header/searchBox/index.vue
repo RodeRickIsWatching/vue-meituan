@@ -1,18 +1,28 @@
 <template>
   <div class="search-box-container">
     <div class="logo-container">
-      <img :src="imgSrc" alt>
+      <img src="//s0.meituan.net/bs/fe-web-meituan/e5eeaef/img/logo.png" alt>
+      <cmp-all-menu class="cmp-all-menu-container clearfix"/>
     </div>
+
     <div class="search-box">
       <div class="input-container">
         <input
           class="input"
-          v-model="input"
           placeholder="搜索商家或地点"
           @input="oninput($event.target.value)"
           @click="onclick($event)"
+          @keyup.enter="onSubmitInfo"
+          :value="inputVal"
         >
-        <el-button class="button" icon="el-icon-search"/>
+        <el-button
+          class="button"
+          icon="el-icon-search"
+          @click="onSubmitInfo"
+          @mousedown.native="clickActive=true"
+          @mouseup.native="clickActive=false"
+          :class="{'click-active': clickActive}"
+        />
       </div>
       <div class="hot-word-search" v-show="ifShowHotWord">
         <div class="no-input">
@@ -31,13 +41,16 @@
 
 
 <script>
-// import img from "@/assets/logo.png";
+import { mapMutations, mapState } from "vuex";
+import allMenu from "../allMenu/index.vue";
 export default {
+  components: {
+    "cmp-all-menu": allMenu
+  },
   data() {
     return {
+      clickActive: false,
       ifShowHotWord: false,
-      input: "",
-      imgSrc: require("@/assets/logo.png"),
       hotWord: [
         "上海迪士尼度假区",
         "上海海昌海洋公园",
@@ -46,7 +59,14 @@ export default {
       ]
     };
   },
+  computed: {
+    ...mapState("home", ["inputVal"])
+  },
   methods: {
+    ...mapMutations("home", ["updateInputVal"]),
+    onSubmitInfo() {
+      this.$router.push({ name: "product" });
+    },
     onclick(e) {
       this.ifShowHotWord = true;
       let target = e.currentTarget;
@@ -60,6 +80,7 @@ export default {
     },
     oninput(val) {
       this.input = val;
+      this.updateInputVal(val);
       if (val) {
         this.ifShowHotWord = false;
       } else {
@@ -71,6 +92,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.cmp-all-menu-container {
+  display: inline-block;
+  align-self: flex-end;
+}
+.click-active {
+  opacity: 0.7;
+}
 .search-box {
   float: left;
   padding-top: 28px;
@@ -116,6 +144,7 @@ export default {
 }
 
 .logo-container {
+  display: inline-flex;
   float: left;
   padding-top: 28px;
   padding-right: 60px;

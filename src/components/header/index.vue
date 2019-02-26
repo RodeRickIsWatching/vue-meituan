@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import navbar from "@/components/home/header/navbar/index.vue";
-import searchBox from "@/components/home/header/searchBox/index.vue";
+import navbar from "./navbar/index.vue";
+import searchBox from "./searchBox/index.vue";
 
 export default {
   components: {
@@ -36,7 +36,7 @@ export default {
 
 .cmp-search-box {
   width: 1205px;
-  padding-bottom: 35px;
+  // padding-bottom: 35px;
   margin: 0 auto;
 
   &::after {

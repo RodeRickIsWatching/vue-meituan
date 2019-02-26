@@ -55,7 +55,7 @@ export default {
   },
   data() {
     return {
-      banner1Link: [require("@assets/menuRight/banner1Link.jpg")],
+      banner1Link: ["http://p0.meituan.net/codeman/e473bb428f070321269b23370ff02ba956209.jpg"],
       fn: { fn1: ["我的订单", "我的收藏", "抵用券"], fn2: ["余额", "更多"] },
       bgArr: [
         require("@assets/menuRight/carousel/bg0.jpg"),

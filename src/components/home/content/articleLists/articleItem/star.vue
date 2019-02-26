@@ -15,13 +15,12 @@
 
 <script>
 export default {
-    props:["score"],
-    computed:{
-        renderScore(){
-            console.log( `${this.score/5*100}%`)
-            return `${this.score/5*100}%`
-        }
+  props: ["score"],
+  computed: {
+    renderScore() {
+      return `${(this.score / 5) * 100}%`;
     }
+  }
 };
 </script>
 <style lang='scss' scoped>

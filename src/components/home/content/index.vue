@@ -18,6 +18,7 @@ import menuRight from "./menuRight/index.vue";
 import articleList from "./articleLists/index.vue";
 
 export default {
+  // props:["nowCity"],
   components: {
     "cmp-menu-left": menuLeft,
     "cmp-menu-right": menuRight,

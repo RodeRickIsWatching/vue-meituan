@@ -7,7 +7,7 @@
     </div>
     <div class="download-app floatLeft">
       <div class="erweima">
-        <img src="@/assets/menuRight/download-qr.png">
+        <img src="//s1.meituan.net/bs/fe-web-meituan/60ac9a0/img/download-qr.png">
       </div>
       <div class="app-name">美团APP手机版</div>
       <div class="des">
@@ -23,9 +23,9 @@ export default {
   data() {
     return {
       banner2Link: [
-        require("@assets/menuRight/banner2Link0.png"),
-        require("@assets/menuRight/banner2Link1.jpg"),
-        require("@assets/menuRight/banner2Link2.jpg")
+        "http://p1.meituan.net/codeman/8cce56c467a17e04f3094d1e455462a0132772.png",
+        "http://p1.meituan.net/codeman/16442c19da1f1c4544f794e29d99c92051716.jpg",
+        "http://p1.meituan.net/codeman/5b21cddb4bb1cbc3a9c3bce0f726c75940469.jpg"
       ]
     };
   }

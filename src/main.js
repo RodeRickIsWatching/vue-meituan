@@ -10,7 +10,8 @@ import {
   Icon,
   Input,
   Carousel,
-  CarouselItem
+  CarouselItem,
+  cascader
 } from 'element-ui';
 
 Vue.config.productionTip = false
@@ -24,6 +25,7 @@ Vue.use(Icon)
 Vue.use(Input)
 Vue.use(Carousel)
 Vue.use(CarouselItem)
+Vue.use(cascader)
 
 
 
